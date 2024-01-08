@@ -86,6 +86,10 @@
 				"title": "STM32: Build and flash to an STM32 platform"
 			},
 			{
+				"command": "stm32-for-vscode.remoteFlash",
+				"title": "STM32: Build and flash to an STM32 platform over SSH"
+			},
+			{
 				"command": "stm32-for-vscode.cleanBuild",
 				"title": "STM32: Build clean STM32 project"
 			},

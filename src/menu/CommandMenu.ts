@@ -23,6 +23,11 @@ const flashCommand: BuildCommandDefinition = {
   command: 'stm32-for-vscode.flash',
   explanation: 'Builds and subsequently flashes the firmware to the STM32 MCU',
 };
+const remoteFlashCommand: BuildCommandDefinition = {
+  label: 'Remote Flash STM32',
+  command: 'stm32-for-vscode.remoteFlash',
+  explanation: 'Remotely flashes the firmware to the STM32 MCU via Raspberry Pi',
+};
 const debugCommand: BuildCommandDefinition = {
   label: 'Debug STM32',
   command: 'workbench.action.debug.start',
@@ -47,7 +52,8 @@ const COMMANDS: { [key: string]: BuildCommandDefinition } = {
   flashCommand,
   debugCommand,
   changeProgrammerCommand,
-  importCubeProject
+  importCubeProject,
+  remoteFlashCommand,
 };
 
 class BuildCommand extends vscode.TreeItem {
@@ -78,6 +84,7 @@ export default class CommandMenuProvider implements vscode.TreeDataProvider<Buil
   public getTreeItem(element: BuildCommand): vscode.TreeItem {
     return element;
   }
+  
   public getChildren(): BuildCommand[] {
     const hasBuildTools = this.context.globalState.get('hasBuildTools');
     if (!hasBuildTools) {
@@ -99,6 +106,7 @@ export default class CommandMenuProvider implements vscode.TreeDataProvider<Buil
         )
       );
     });
+
     return commands;
   }
   // eslint-disable-next-line max-len
